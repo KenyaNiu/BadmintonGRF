@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://KenyaNiu.github.io/BadmintonGRF/">
-    <img src="docs/demo_content/slider_demo.gif" width="100%" alt="BadmintonGRF Interactive Demo">
+    <img src="docs/demo_content/readme_comparison.png" width="100%" alt="BadmintonGRF Input vs Output">
   </a>
 </div>
 
