@@ -4,11 +4,11 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Data License](https://img.shields.io/badge/data%20license-CC%20BY--NC%204.0-orange.svg)](LICENSE-DATA-CC-BY-NC-4.0.txt)
 
-> **ACM MM 2026 Dataset Track** - A multi-modal dataset for ground reaction force estimation from badminton videos
+> **ACM MM 2026 Dataset Track** - A multimodal dataset and benchmark for markerless ground reaction force estimation in badminton
 
 ## Overview
 
-BadmintonGRF is the first multi-modal dataset that provides synchronized multi-view high-frame-rate videos, 6-axis ground reaction force (GRF), full-body Vicon motion capture (C3D), and fatigue-stage annotations for badminton biomechanics research. It enables contactless GRF estimation from consumer cameras for the first time.
+BadmintonGRF is the first multimodal dataset that provides synchronized multi-view high-frame-rate videos, 6-axis ground reaction force (GRF), full-body Vicon motion capture (C3D), and fatigue-stage annotations for badminton biomechanics research. It enables contactless GRF estimation from consumer cameras with human-in-the-loop alignment, addressing the challenge of hardware synchronization between consumer cameras and laboratory equipment.
 
 ### Key Features
 
@@ -16,20 +16,24 @@ BadmintonGRF is the first multi-modal dataset that provides synchronized multi-v
 - **8 multi-view cameras** (1080p, ~120 FPS)
 - **4 Kistler force plates** (6-axis, 1000/1200 Hz)
 - **Vicon motion capture** (8 IR cameras, ~52 markers, 240/250 Hz)
-- **3-stage fatigue annotations**
+- **Fatigue-stage annotations** for protocol stratification
 - **Human-in-the-loop alignment tool** for camera-GRF synchronization
-- **Impact-segment samples** with standardized schema
+- **17,425 impact-segment samples** (12,867 after quality gates)
+- **1,732 unique impacts** (multi-view collapsed)
+- **156 trials** with diverse badminton movements
+- **LOSO (Leave-One-Subject-Out) evaluation protocol** with fixed splits
+- **10 reproducible baseline models** for GRF estimation
 
 ## Dataset Access
 
-- **Pose, GRF, C3D, and IMU data**: Publicly available on [Zenodo](https://doi.org/10.5281/zenodo.19277566)
-- **Raw video**: Access via request (see [Video Access Policy](docs/video_access_policy.md))
+- **Tier 1 (Public)**: Processed pose, GRF, metadata, and splits available on [Zenodo](https://doi.org/10.5281/zenodo.19277566)
+- **Tier 2 (Controlled)**: Raw RGB videos + C3D under application access
 
 ## 📖 Citation
 
 ```bibtex
 @dataset{badmintongrf2026,
-  title={BadmintonGRF v1.0: A Multimodal Dataset and Benchmark for Non-Contact Ground Reaction Force Estimation in Badminton},
+  title={BadmintonGRF v1.0: A Multimodal Dataset and Benchmark for Markerless Ground Reaction Force Estimation in Badminton},
   author={Niu, Kuoye and Li, Jianwei and Cai, Shengze and Ma, Yong and Jia, Mengyao and Shen, Lishun and Zhang, Zhenheng and Peng, Yuxin and Song, Xian},
   year={2026},
   doi={10.5281/zenodo.19277566},
@@ -58,7 +62,6 @@ conda activate badminton_grf
    ```bash
    export BADMINTON_DATA_ROOT=/path/to/data
    ```
-3. (Optional) Request raw video access using the [form](docs/video_access_request_form.md)
 
 ### Run Baselines
 
@@ -89,22 +92,11 @@ BadmintonGRF/
 │   ├── step2_verify_sync.py
 │   ├── step3_extract_pose.py
 │   └── step4_segment.py
-├── analysis/             # Analysis and visualization
-├── docs/                 # Documentation
 ├── paper/                # ACM MM 2026 paper
 ├── tools/                # Utility scripts
 ├── environment.yml       # Conda environment
 └── run_all_baselines.sh  # Baseline runner
 ```
-
-## Documentation
-
-- [Dataset Release Checklist](docs/dataset_release_checklist.md)
-- [Zenodo Release Plan](docs/zenodo_release_plan.md)
-- [Video Access Policy](docs/video_access_policy.md)
-- [Video Access Request Form](docs/video_access_request_form.md)
-- [Paper Supplementary Material](docs/paper_supplementary.md)
-- [Project Overview](docs/project_overview_acmmm.md)
 
 ## License
 
@@ -116,9 +108,9 @@ BadmintonGRF/
 If you use this dataset in your research, please cite:
 
 ```bibtex
-@inproceedings{cai2026badmintongrf,
-  title={BadmintonGRF: A Multi-Modal Dataset for Ground Reaction Force Estimation from Badminton Videos},
-  author={Cai, Shengze and ... and Song, Xian},
+@inproceedings{niu2026badmintongrf,
+  title={BadmintonGRF: A Multimodal Dataset and Benchmark for Markerless Ground Reaction Force Estimation in Badminton},
+  author={Niu, Kuoye and Li, Jianwei and Cai, Shengze and Ma, Yong and Jia, Mengyao and Shen, Lishun and Zhang, Zhenheng and Peng, Yuxin and Song, Xian},
   booktitle={Proceedings of the 34th ACM International Conference on Multimedia},
   year={2026}
 }
