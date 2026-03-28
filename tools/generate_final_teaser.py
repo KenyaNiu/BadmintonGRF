@@ -8,6 +8,39 @@ def draw_text(draw, text, pos, font, color=(255, 255, 255)):
     draw.text((pos[0]+1, pos[1]+1), text, font=font, fill=(0, 0, 0, 150))
     draw.text(pos, text, font=font, fill=color)
 
+def apply_face_mosaic(img, pixel_size=15):
+    # Load face cascade
+    cascade_path = "/home/nky/miniconda3/envs/badminton_grf/lib/python3.10/site-packages/cv2/data/haarcascade_frontalface_default.xml"
+    face_cascade = cv2.CascadeClassifier(cascade_path)
+    
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    faces = face_cascade.detectMultiScale(gray, 1.1, 4)
+    
+    # If Haar misses (common in sports), use a heuristic based on the person's location
+    # In this specific cam04 shot, the person's head is roughly at (0.55*w, 0.25*h) relative to the person's bbox
+    # But let's try to be more general. If faces is empty, we'll use a hardcoded ROI for this specific teaser
+    if len(faces) == 0:
+        # Hardcoded ROI for the athlete in rank_001_cam04 middle frame
+        # Relative to the patch size
+        h, w = img.shape[:2]
+        # Athlete head is roughly here:
+        faces = [(int(w * 0.52), int(h * 0.38), int(w * 0.06), int(h * 0.12))]
+
+    for (x, y, w_f, h_f) in faces:
+        # Expand ROI slightly
+        x = max(0, x - int(w_f * 0.2))
+        y = max(0, y - int(h_f * 0.2))
+        w_f = min(img.shape[1] - x, int(w_f * 1.4))
+        h_f = min(img.shape[0] - y, int(h_f * 1.4))
+        
+        face_roi = img[y:y+h_f, x:x+w_f]
+        if face_roi.size == 0: continue
+        
+        # Pixelate
+        temp = cv2.resize(face_roi, (w_f // pixel_size, h_f // pixel_size), interpolation=cv2.INTER_LINEAR)
+        img[y:y+h_f, x:x+w_f] = cv2.resize(temp, (w_f, h_f), interpolation=cv2.INTER_NEAREST)
+    return img
+
 def create_final_teaser(base_dir):
     rank_dir = base_dir / "runs/fig1_asset_pack_v6/per_rank/rank_001_cam04"
     storyboard_path = rank_dir / "storyboard_raw_skeleton_curve.png"
@@ -30,6 +63,10 @@ def create_final_teaser(base_dir):
     min_h = min(raw_patch.shape[0], skel_patch.shape[0])
     raw_patch = raw_patch[:min_h, :]
     skel_patch = skel_patch[:min_h, :]
+    
+    # Apply face mosaic to BOTH patches
+    raw_patch = apply_face_mosaic(raw_patch)
+    skel_patch = apply_face_mosaic(skel_patch)
     
     ph, pw = raw_patch.shape[:2]
     
