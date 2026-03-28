@@ -1,4 +1,8 @@
 <div align="center">
+  <img src="docs/demo_content/teaser.png" width="100%" alt="BadmintonGRF Teaser">
+</div>
+
+<div align="center">
   <h1>🏸 BadmintonGRF</h1>
   <h3>A Multimodal Dataset and Benchmark for Markerless Ground Reaction Force Estimation in Badminton</h3>
   
@@ -28,7 +32,6 @@
 
 ## 📢 News
 - **[2026-03]** 🏸 BadmintonGRF dataset and benchmark code are officially released!
-- **[2026-03]** 🎉 Our paper has been submitted to ACM Multimedia (ACM MM) 2026 Dataset Track.
 
 ## 📊 Dataset Overview
 
@@ -129,4 +132,4 @@ If you find our dataset or code useful in your research, please consider citing:
 
 ## 🤝 Acknowledgments
 
-We extend our deepest gratitude to all the elite athletes who participated in this study, and the annotation team for their rigorous data verification.
+We extend our deepest gratitude to all the elite athletes from **Wuhan Sports University** who participated in this study, and the experimental staff for their professional support during the data collection process.
