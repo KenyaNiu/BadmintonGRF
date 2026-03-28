@@ -1,6 +1,6 @@
 # BadmintonGRF
 
-[![ACM MM 2026](https://img.shields.io/badge/ACM%20MM-2026-blue.svg)](https://doi.org/10.1145/XXXXXX)
+[![ACM MM 2026](https://img.shields.io/badge/ACM%20MM-2026-blue.svg)](https://doi.org/10.5281/zenodo.19277566)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Data License](https://img.shields.io/badge/data%20license-CC%20BY--NC%204.0-orange.svg)](LICENSE-DATA-CC-BY-NC-4.0.txt)
 
@@ -22,8 +22,20 @@ BadmintonGRF is the first multi-modal dataset that provides synchronized multi-v
 
 ## Dataset Access
 
-- **Pose, GRF, C3D, and IMU data**: Publicly available on [Zenodo](https://doi.org/10.5281/zenodo.XXXXXX)
+- **Pose, GRF, C3D, and IMU data**: Publicly available on [Zenodo](https://doi.org/10.5281/zenodo.19277566)
 - **Raw video**: Access via request (see [Video Access Policy](docs/video_access_policy.md))
+
+## 📖 Citation
+
+```bibtex
+@dataset{badmintongrf2026,
+  title={BadmintonGRF v1.0: A Multimodal Dataset and Benchmark for Non-Contact Ground Reaction Force Estimation in Badminton},
+  author={Niu, Kuoye and Li, Jianwei and Cai, Shengze and Ma, Yong and Jia, Mengyao and Shen, Lishun and Zhang, Zhenheng and Peng, Yuxin and Song, Xian},
+  year={2026},
+  doi={10.5281/zenodo.19277566},
+  organization={Zenodo}
+}
+```
 
 ## Quick Start
 
@@ -31,7 +43,7 @@ BadmintonGRF is the first multi-modal dataset that provides synchronized multi-v
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/BadmintonGRF.git
+git clone https://github.com/KenyaNiu/BadmintonGRF.git
 cd BadmintonGRF
 
 # Create conda environment

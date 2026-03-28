@@ -34,6 +34,15 @@ runs/
 temp/
 tmp/
 
+# Local archives (not for GitHub)
+archive/
+
+# Zenodo upload files (not for GitHub)
+zenodo_upload/
+
+# Documentation (not for GitHub)
+docs/
+
 # LaTeX build artifacts
 paper/build/
 paper/*.aux
@@ -63,6 +72,10 @@ paper/*.vrb
 *.ckpt
 *.onnx
 *.whl
+
+# Except pretrained models (needed for reproducibility)
+!pretrained/*.pt
+!pretrained/*.pth
 
 # Jupyter notebooks
 .ipynb_checkpoints/
