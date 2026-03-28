@@ -1,0 +1,63 @@
+## NOTE (reference-only)
+## ---------------------
+## This YAML is a *human-readable template* for running experiments.
+## Current code paths (baseline/train.py, baseline/tasks/*.py, python -m baseline …)
+## do NOT load these YAML files automatically. The actual hyperparameters come from CLI args.
+##
+## Keep this file as a reproducible "recipe". If you change it, also update the CLI command you run.
+##
+loso_splits: /media/nky/Lenovo/data/reports/loso_splits.json
+
+cameras: [2]
+fz_only: true
+test_subject: null
+
+model:
+  type: transformer
+  d_model: 128
+  nhead: 4
+  num_layers: 4
+  dim_feedforward: 256
+  dropout: 0.1
+
+train:
+  epochs: 100
+  batch_size: 32
+  lr: 3.0e-4          # Transformer 一般略小一点
+  weight_decay: 1.0e-4
+  grad_clip: 1.0
+  augment: true
+
+runtime:
+  device: cuda
+  log_level: INFO
+  out_dir: runs
+
+## ---------------------------------------------------------------------------
+## CLI templates (copy/paste)
+## ---------------------------------------------------------------------------
+## E4 training (ST-GCN + Temporal Transformer; YAML is NOT auto-loaded)
+##
+##   python -m baseline train --method stgcn_transformer \
+##     --loso_splits /media/nky/Lenovo/data/reports/loso_splits.json \
+##     --fz_only \
+##     --epochs 500 \
+##     --patience 80 \
+##     --batch_size 128 \
+##     --hidden_dim 128 \
+##     --gcn_ch1 32 \
+##     --gcn_ch2 64 \
+##     --tf_layers 2 \
+##     --num_heads 4 \
+##     --dropout 0.2 \
+##     --lr 5e-4 \
+##     --weight_decay 1e-4 \
+##     --save_report
+##
+## E5 (optional) late fusion on top of E4 checkpoints:
+##   python -m baseline fuse --base_run_dir <stgcn_run> \
+##     --loso_splits /media/nky/Lenovo/data/reports/loso_splits.json \
+##     --e4_runs_dir runs/<E4_RUN_DIR> \
+##     --e1_runs_dir runs/<E1_RUN_DIR> \
+##     --fz_only \
+##     --save_report

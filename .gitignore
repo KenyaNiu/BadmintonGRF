@@ -1,0 +1,78 @@
+# Data directories
+data/
+segments/*.npz
+experiments/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.hypothesis/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Experiment outputs & local scratch
+runs/
+temp/
+tmp/
+
+# LaTeX build artifacts
+paper/build/
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.fls
+paper/*.fdb_latexmk
+paper/*.blg
+paper/*.bbl
+paper/*.synctex.gz
+paper/*.toc
+paper/*.lof
+paper/*.lot
+paper/*.nav
+paper/*.snm
+paper/*.vrb
+*.dvi
+*.ps
+
+# Keep paper figures and important PDFs
+!paper/figures/*.pdf
+!paper/*.pdf
+
+# Large model weights and binaries
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.whl
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# Conda
+*.yml.bak
+*.yaml.bak
+
+# Environment variables
+.env
+.env.local
+.env.*.local

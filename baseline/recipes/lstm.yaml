@@ -1,0 +1,76 @@
+## NOTE (reference-only)
+## ---------------------
+## This YAML is a *human-readable template* for running experiments.
+## Current code paths (baseline/train.py, baseline/tasks/evaluate.py, python -m baseline …)
+## do NOT load these YAML files automatically. The actual hyperparameters come from CLI args.
+##
+## Keep this file as a reproducible "recipe". If you change it, also update the CLI command you run.
+##
+loso_splits: /media/nky/Lenovo/data/reports/loso_splits.json
+
+# 使用的相机（论文主结果一般用 cam2）
+cameras: [2]
+
+# 只预测 Fz（垂直分量），标签 shape = (T,1)
+fz_only: true
+
+# 如果只想跑一个 fold（调试用），填 "sub_001"，否则留空表示所有 subject
+test_subject: null   # 或 "sub_001"
+
+model:
+  type: lstm
+  hidden_dim: 128
+  num_layers: 2
+  dropout: 0.3
+  bidirectional: true   # 对应 train.py 里的 --unidirectional=False
+
+train:
+  epochs: 100
+  batch_size: 32
+  lr: 1.0e-3
+  weight_decay: 1.0e-4
+  grad_clip: 1.0
+  augment: true          # 是否使用数据增强（train.py 里对应 --no_augment）
+
+runtime:
+  device: cuda           # 或 "cuda:0" / "cpu"
+  log_level: INFO
+  out_dir: runs
+
+## ---------------------------------------------------------------------------
+## CLI templates (copy/paste)
+## ---------------------------------------------------------------------------
+## E1 training (matches baseline/train.py; YAML is NOT auto-loaded)
+##
+## Single camera (e.g. cam2):
+##   python -m baseline.train \
+##     --loso_splits /media/nky/Lenovo/data/reports/loso_splits.json \
+##     --cameras 2 \
+##     --fz_only \
+##     --epochs 100 \
+##     --batch_size 32 \
+##     --hidden_dim 128 \
+##     --num_layers 2 \
+##     --dropout 0.3 \
+##     --tcn_channels 64 \
+##     --lr 1.0e-3 \
+##     --weight_decay 1.0e-4 \
+##     --grad_clip 1.0 \
+##     --save_report \
+##     --out_dir runs
+##
+## All cameras (train on every camera sample; "camall" style runs):
+##   python -m baseline.train \
+##     --loso_splits /media/nky/Lenovo/data/reports/loso_splits.json \
+##     --fz_only \
+##     --epochs 100 \
+##     --batch_size 32 \
+##     --hidden_dim 128 \
+##     --num_layers 2 \
+##     --dropout 0.3 \
+##     --tcn_channels 64 \
+##     --lr 1.0e-3 \
+##     --weight_decay 1.0e-4 \
+##     --grad_clip 1.0 \
+##     --save_report \
+##     --out_dir runs

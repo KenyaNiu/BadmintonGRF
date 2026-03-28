@@ -1,0 +1,67 @@
+## NOTE (reference-only)
+## ---------------------
+## This YAML is a *human-readable template* for running experiments.
+## Current code paths (baseline/train.py, baseline/tasks/*.py, python -m baseline …)
+## do NOT load these YAML files automatically. The actual hyperparameters come from CLI args.
+##
+## Keep this file as a reproducible "recipe". If you change it, also update the CLI command you run.
+##
+loso_splits: /media/nky/Lenovo/data/reports/loso_splits.json
+
+# 多视角：论文建议 2,3,5,8
+cameras: [2, 3, 5, 8]
+
+fz_only: true
+test_subject: null
+
+model:
+  type: late_fusion        # 以后在 train.py 里根据这个选择 multiview_fusion
+  hidden_dim: 128
+  num_layers: 2
+  dropout: 0.3
+  bidirectional: true
+
+train:
+  epochs: 100
+  batch_size: 16          # 多视角内存占用更大，batch 可适当减小
+  lr: 1.0e-3
+  weight_decay: 1.0e-4
+  grad_clip: 1.0
+  augment: true
+
+runtime:
+  device: cuda
+  log_level: INFO
+  out_dir: runs
+
+## ---------------------------------------------------------------------------
+## CLI templates (copy/paste)
+## ---------------------------------------------------------------------------
+## NOTE: 目前 baseline/train.py 不会读取 model.type=late_fusion 这类字段。
+## 多相机 Late Fusion 的实现对应实验脚本 E2（不重新训练，只在测试时融合）。
+##
+## Step 1) 先跑 E1（建议用 camall 或你想要的训练相机集合）得到 runs/<E1_RUN>/fold_sub_XXX/best_model.pth
+##   python -m baseline.train \
+##     --loso_splits /media/nky/Lenovo/data/reports/loso_splits.json \
+##     --fz_only \
+##     --epochs 100 \
+##     --batch_size 32 \
+##     --hidden_dim 128 \
+##     --num_layers 2 \
+##     --dropout 0.3 \
+##     --tcn_channels 128 \
+##     --lr 1.0e-3 \
+##     --save_report \
+##     --out_dir runs
+##
+## Step 2) 跑 E2 Late Fusion（测试时对同一 impact 的多相机预测做置信度加权平均）
+##   python -m baseline fuse \
+##     --loso_splits /media/nky/Lenovo/data/reports/loso_splits.json \
+##     --e1_runs_dir  runs/<E1_RUN_DIR> \
+##     --cameras 2 3 5 8 \
+##     --fz_only \
+##     --hidden_dim 128 \
+##     --num_layers 2 \
+##     --dropout 0.3 \
+##     --tcn_channels 128 \
+##     --save_report

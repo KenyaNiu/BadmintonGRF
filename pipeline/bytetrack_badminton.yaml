@@ -1,0 +1,10 @@
+tracker_type: bytetrack
+# Fix-1: track_buffer 30→600
+# 默认30在119.88fps下只有~0.25s缓冲，运动员腾空即丢失。
+# 600帧≈5s，足以覆盖所有腾空和遮挡场景。
+track_buffer: 600
+track_high_thresh: 0.25
+track_low_thresh: 0.1
+new_track_thresh: 0.25
+match_thresh: 0.8
+fuse_score: True
