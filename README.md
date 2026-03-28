@@ -1,10 +1,4 @@
 <div align="center">
-  <a href="https://KenyaNiu.github.io/BadmintonGRF/">
-    <img src="docs/demo_content/readme_comparison.png" width="100%" alt="BadmintonGRF Input vs Output">
-  </a>
-</div>
-
-<div align="center">
   <h1>🏸 BadmintonGRF</h1>
   <h3>A Multimodal Dataset and Benchmark for Markerless Ground Reaction Force Estimation in Badminton</h3>
   
