@@ -41,7 +41,13 @@ archive/
 zenodo_upload/
 
 # Documentation (not for GitHub)
-docs/
+docs/*
+!docs/demo/
+
+# Keep demo assets
+!docs/demo/keyframes/
+!docs/demo/*.html
+!docs/demo/*.py
 
 # LaTeX build artifacts
 paper/build/
