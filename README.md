@@ -127,7 +127,7 @@ If you use this dataset in your research, please cite:
 ## Contact
 
 For questions, please contact:
-- Xian Song (corresponding author): sx1993@zju.edu.cn
+- Kuoye Niu: kuoyeniu@163.com
 
 ## Acknowledgments
 
