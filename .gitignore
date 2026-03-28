@@ -46,7 +46,9 @@ docs/*
 # Keep demo assets
 !docs/index.html
 !docs/generate_keyframes.py
+!docs/generate_demo_content.py
 !docs/keyframes/
+!docs/demo_content/
 
 # LaTeX build artifacts
 paper/build/
