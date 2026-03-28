@@ -1,5 +1,7 @@
 <div align="center">
-  <img src="docs/demo_content/summary_card.png" width="100%" alt="BadmintonGRF Banner">
+  <a href="https://KenyaNiu.github.io/BadmintonGRF/">
+    <img src="docs/demo_content/slider_demo.gif" width="100%" alt="BadmintonGRF Interactive Demo">
+  </a>
 </div>
 
 <div align="center">

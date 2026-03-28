@@ -1,336 +1,382 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BadmintonGRF: A Multimodal Dataset and Benchmark for Markerless Ground Reaction Force Estimation in Badminton</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fafafa;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            background-color: #fff;
-            box-shadow: 0 0 20px rgba(0,0,0,0.05);
-        }
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #1a1a1a;
-        }
-        h2 {
-            font-size: 1.8rem;
-            font-weight: 500;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            color: #2c3e50;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
-        h3 {
-            font-size: 1.4rem;
-            font-weight: 500;
-            color: #34495e;
-            margin-top: 30px;
-        }
-        .conference {
-            font-size: 1.2rem;
-            color: #e74c3c;
-            font-weight: 500;
-            margin-bottom: 20px;
-        }
-        .authors {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-        }
-        .authors a {
-            color: #2980b9;
-            text-decoration: none;
-        }
-        .authors a:hover {
-            text-decoration: underline;
-        }
-        .affiliations {
-            font-size: 1rem;
-            color: #666;
-            margin-bottom: 30px;
-        }
-        .links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #34495e;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 500;
-            transition: background-color 0.3s;
-        }
-        .btn:hover {
-            background-color: #2c3e50;
-        }
-        .btn-primary {
-            background-color: #3498db;
-        }
-        .btn-primary:hover {
-            background-color: #2980b9;
-        }
-        .teaser {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
-        }
-        .abstract-box {
-            background-color: #f8f9fa;
-            padding: 25px;
-            border-radius: 8px;
-            border-left: 4px solid #3498db;
-            margin-bottom: 40px;
-            font-size: 1.05rem;
-            text-align: justify;
-        }
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        .grid-img {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        .caption {
-            text-align: center;
-            font-size: 0.9rem;
-            color: #7f8c8d;
-            margin-top: 10px;
-            font-style: italic;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 30px 0;
-            font-size: 0.95rem;
-        }
-        th, td {
-            padding: 12px 15px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #f2f2f2;
-            font-weight: 600;
-            color: #333;
-        }
-        tr:hover {
-            background-color: #f9f9f9;
-        }
-        .best {
-            font-weight: bold;
-            color: #e74c3c;
-        }
-        .bibtex {
-            background-color: #f4f4f4;
-            padding: 20px;
-            border-radius: 8px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.9rem;
-            overflow-x: auto;
-            border: 1px solid #e0e0e0;
-        }
-        ul.features {
-            list-style-type: none;
-            padding: 0;
-        }
-        ul.features li {
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 15px;
-            font-size: 1.05rem;
-        }
-        ul.features li::before {
-            content: '🏸';
-            position: absolute;
-            left: 0;
-            top: 2px;
-        }
-        footer {
-            text-align: center;
-            margin-top: 60px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-            color: #7f8c8d;
-            font-size: 0.9rem;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="description" content="BadmintonGRF: A Multimodal Dataset and Benchmark for Markerless Ground Reaction Force Estimation in Badminton">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BadmintonGRF</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <!-- Bulma & CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Image Comparison Slider -->
+  <script defer src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css"/>
+
+  <style>
+    body {
+      font-family: 'Noto Sans', sans-serif;
+    }
+    .hero-body {
+      padding: 3rem 1.5rem;
+    }
+    .title.is-1 {
+      font-family: 'Google Sans', sans-serif;
+      font-weight: 700;
+    }
+    .publication-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .publication-authors {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .author-block {
+      display: inline-block;
+      margin-right: 15px;
+    }
+    .author-block a {
+      color: #3273dc;
+    }
+    .publication-institutions {
+      font-size: 1rem;
+      color: #7a7a7a;
+      margin-bottom: 1.5rem;
+    }
+    .publication-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 1.5rem;
+    }
+    .link-block a {
+      border-radius: 20px;
+      background-color: #363636;
+      color: white;
+      padding: 0.5em 1.2em;
+      transition: background-color 0.2s;
+    }
+    .link-block a:hover {
+      background-color: #00d1b2;
+      color: white;
+    }
+    .abstract-text {
+      text-align: justify;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    .section-title {
+      font-family: 'Google Sans', sans-serif;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .video-container {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .slider-container {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin: 0 auto;
+      max-width: 900px;
+    }
+    .custom-slider {
+      --divider-color: rgba(255, 255, 255, 0.8);
+      --default-handle-color: #fff;
+    }
+    .stats-card {
+      background: #f5f5f5;
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      height: 100%;
+    }
+    .stats-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #3273dc;
+    }
+    table {
+      width: 100%;
+      margin: 2rem auto;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #dbdbdb;
+    }
+    th {
+      background-color: #f5f5f5;
+    }
+    .best {
+      font-weight: bold;
+      color: #e74c3c;
+    }
+    .footer {
+      background-color: #fafafa;
+      padding: 3rem 1.5rem;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>BadmintonGRF</h1>
-            <h2 style="border: none; margin-top: 0; font-size: 1.6rem; color: #555;">A Multimodal Dataset and Benchmark for Markerless Ground Reaction Force Estimation in Badminton</h2>
-            <div class="conference">ACM Multimedia 2026 Dataset Track</div>
-            
-            <div class="authors">
-                <a href="#">Kuoye Niu</a><sup>1,2</sup>, 
-                <a href="#">Jianwei Li</a><sup>1</sup>, 
-                <a href="#">Shengze Cai</a><sup>2</sup>, 
-                <a href="#">Yong Ma</a><sup>3</sup>, 
-                <a href="#">Mengyao Jia</a><sup>3</sup>, <br>
-                <a href="#">Lishun Shen</a><sup>4</sup>, 
-                <a href="#">Zhenheng Zhang</a><sup>5</sup>, 
-                <a href="#">Yuxin Peng</a><sup>5</sup>, 
-                <a href="#">Xian Song</a><sup>5,*</sup>
-            </div>
-            
-            <div class="affiliations">
-                <sup>1</sup>School of Sports Engineering, Beijing Sport University<br>
-                <sup>2</sup>College of Control Science and Engineering, Zhejiang University<br>
-                <sup>3</sup>Wuhan Sports University<br>
-                <sup>4</sup>Department of Physical Education, Zhejiang Gongshang University<br>
-                <sup>5</sup>Department of Sports Science, Zhejiang University<br>
-                <sup>*</sup>Corresponding Author
-            </div>
-            
-            <div class="links">
-                <a href="https://doi.org/10.5281/zenodo.19277566" class="btn btn-primary">📊 Dataset (Zenodo)</a>
-                <a href="https://github.com/KenyaNiu/BadmintonGRF" class="btn">💻 GitHub Code</a>
-                <a href="#citation" class="btn">📄 Paper</a>
-            </div>
-        </header>
 
-        <img src="demo_content/summary_card.png" alt="BadmintonGRF Teaser" class="teaser">
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">🏸 BadmintonGRF</h1>
+          <h2 class="subtitle is-3">A Multimodal Dataset and Benchmark for Markerless Ground Reaction Force Estimation in Badminton</h2>
+          
+          <div class="is-size-5 has-text-weight-semibold" style="color: #e74c3c; margin-bottom: 1rem;">
+            ACM Multimedia 2026 Dataset Track
+          </div>
 
-        <div class="abstract-box">
-            <strong>Abstract:</strong> Public multimodal resources rarely pair laboratory ground reaction force (GRF) with high-frame-rate multi-view video for <em>non-periodic</em> court sports. BadmintonGRF links eight-view ~120 FPS RGB, four Kistler plates, and Vicon C3D; without hardware genlock, software alignment uses human-verified events, automatic quality assurance (QA), and per-camera offsets with uncertainty metadata. Tier 1 releases 2D pose and aligned GRF; Tier 2 provides raw RGB/C3D under application access. We release 17,425 impact-segment archives (10-subject tree; 156 trials); after loader gates: 12,867 instances and 1,732 unique impacts (multi-view collapsed). To our knowledge, no prior public badminton resource combines this sensing stack with audited video-GRF alignment for impact-centric GRF estimation. We open-source preprocessing, LOSO splits, ten baselines, and late fusion.
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><a href="#">Kuoye Niu</a><sup>1,2</sup>,</span>
+            <span class="author-block"><a href="#">Jianwei Li</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="#">Shengze Cai</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="#">Yong Ma</a><sup>3</sup>,</span>
+            <span class="author-block"><a href="#">Mengyao Jia</a><sup>3</sup>,</span>
+            <span class="author-block"><a href="#">Lishun Shen</a><sup>4</sup>,</span>
+            <span class="author-block"><a href="#">Zhenheng Zhang</a><sup>5</sup>,</span>
+            <span class="author-block"><a href="#">Yuxin Peng</a><sup>5</sup>,</span>
+            <span class="author-block"><a href="#">Xian Song</a><sup>5,*</sup></span>
+          </div>
+
+          <div class="is-size-6 publication-institutions">
+            <sup>1</sup>School of Sports Engineering, Beijing Sport University<br>
+            <sup>2</sup>College of Control Science and Engineering, Zhejiang University<br>
+            <sup>3</sup>Wuhan Sports University<br>
+            <sup>4</sup>Department of Physical Education, Zhejiang Gongshang University<br>
+            <sup>5</sup>Department of Sports Science, Zhejiang University<br>
+            <span class="is-size-7"><sup>*</sup>Corresponding Author</span>
+          </div>
+
+          <div class="publication-links">
+            <span class="link-block">
+              <a href="https://doi.org/10.5281/zenodo.19277566" class="button is-dark">
+                <span class="icon"><i class="fas fa-database"></i></span>
+                <span>Dataset (Zenodo)</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="https://github.com/KenyaNiu/BadmintonGRF" class="button is-dark">
+                <span class="icon"><i class="fab fa-github"></i></span>
+                <span>Code</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="#citation" class="button is-dark">
+                <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                <span>Paper</span>
+              </a>
+            </span>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <h2>🌟 Highlights & Features</h2>
-        <ul class="features">
-            <li><strong>Study-Grade Multimodal Capture:</strong> 8 multi-view RGB cameras (~120 FPS), 4 Kistler 6-axis force plates (1000/1200 Hz), and Vicon C3D (~52 markers).</li>
-            <li><strong>Impact-Centric Protocol:</strong> Focuses on non-periodic badminton court movements and landings, with rigorous fatigue-stage annotations for distribution shift studies.</li>
-            <li><strong>Software-Level Alignment:</strong> High-fidelity human-in-the-loop alignment with automatic QA, avoiding costly hardware genlock while providing bounded residual error metadata.</li>
-            <li><strong>Reproducible Benchmark:</strong> Fixed LOSO (Leave-One-Subject-Out) splits, 10 reproducible baseline models (e.g., PatchTST, TSMixer, ST-GCN), and a comprehensive evaluation protocol.</li>
-            <li><strong>Tiered Release:</strong> Privacy-preserving Tier 1 (CC BY-NC 4.0) with extracted poses and GRF, and controlled Tier 2 for raw multi-view RGB/C3D access.</li>
-        </ul>
+<!-- Interactive Teaser -->
+<section class="section pt-0">
+  <div class="container is-max-desktop">
+    <div class="slider-container">
+      <img-comparison-slider class="custom-slider">
+        <img slot="first" src="demo_content/raw_sample.png" width="100%" alt="Raw Video" />
+        <img slot="second" src="demo_content/skeleton_sample.png" width="100%" alt="Pose Estimation & GRF" />
+      </img-comparison-slider>
+    </div>
+    <p class="has-text-centered is-size-6 has-text-grey mt-3">
+      <em>Drag the slider to compare raw multi-view video with COCO-17 pose extraction and contact states.</em>
+    </p>
+  </div>
+</section>
 
-        <h2>📸 Data Modalities & Pipeline</h2>
-        
-        <div class="grid-2">
-            <div>
-                <img src="demo_content/data_collection_setup.png" alt="Collection Setup" class="grid-img">
-                <div class="caption">Figure 1: Instrumented court geometry with 8 fixed cameras, 4 force plates, and Vicon mocap context.</div>
-            </div>
-            <div>
-                <img src="demo_content/pipeline_diagram.png" alt="Pipeline Diagram" class="grid-img">
-                <div class="caption">Figure 2: End-to-end preprocessing flow from raw multi-view capture to benchmark-ready impact segments.</div>
-            </div>
+<!-- Abstract -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">Abstract</h2>
+    <div class="content abstract-text">
+      <p>
+        Public multimodal resources rarely pair laboratory ground reaction force (GRF) with high-frame-rate multi-view video for <em>non-periodic</em> court sports. BadmintonGRF links eight-view ~120 FPS RGB, four Kistler plates, and Vicon C3D; without hardware genlock, software alignment uses human-verified events, automatic quality assurance (QA), and per-camera offsets with uncertainty metadata. 
+      </p>
+      <p>
+        Tier 1 releases 2D pose and aligned GRF; Tier 2 provides raw RGB/C3D under application access. We release <strong>17,425 impact-segment archives</strong> (10-subject tree; 156 trials); after loader gates: 12,867 instances and 1,732 unique impacts (multi-view collapsed). To our knowledge, no prior public badminton resource combines this sensing stack with audited video-GRF alignment for impact-centric GRF estimation. We open-source preprocessing, LOSO splits, ten baselines, and late fusion.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Real-time GRF Demo -->
+<section class="section bg-light" style="background-color: #f9f9f9;">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">Real-time GRF Prediction vs Ground Truth</h2>
+    <p class="has-text-centered mb-5">
+      The video below demonstrates how the predicted vertical Ground Reaction Force (F<sub>z</sub>) closely follows the laboratory ground truth during high-impact jump landings in a dynamic rally.
+    </p>
+    <div class="columns is-centered">
+      <div class="column is-10">
+        <div class="video-container">
+          <video poster="" id="grf-demo" autoplay controls muted loop playsinline width="100%">
+            <source src="demo_content/grf_sync_demo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <div class="grid-2">
-            <div>
-                <img src="demo_content/pose_estimation_samples.png" alt="Pose Estimation" class="grid-img">
-                <div class="caption">Figure 3: Multi-view 2D COCO-17 pose extraction during a dynamic jump landing.</div>
-            </div>
-            <div>
-                <img src="demo_content/grf_data_sample.png" alt="GRF Data" class="grid-img">
-                <div class="caption">Figure 4: Synchronized 3-axis Ground Reaction Force (GRF) during footwork, focusing on vertical Fz impacts.</div>
-            </div>
+<!-- Dataset Features -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">Dataset Highlights</h2>
+    
+    <div class="columns is-multiline">
+      <div class="column is-3">
+        <div class="stats-card">
+          <div class="stats-number">17</div>
+          <div>Elite Athletes</div>
         </div>
+      </div>
+      <div class="column is-3">
+        <div class="stats-card">
+          <div class="stats-number">8</div>
+          <div>Camera Views</div>
+        </div>
+      </div>
+      <div class="column is-3">
+        <div class="stats-card">
+          <div class="stats-number">120</div>
+          <div>FPS Video</div>
+        </div>
+      </div>
+      <div class="column is-3">
+        <div class="stats-card">
+          <div class="stats-number">12.8K</div>
+          <div>Valid Impacts</div>
+        </div>
+      </div>
+    </div>
 
-        <h2>🏆 Benchmark Results</h2>
-        <p>We evaluate 10 baseline architectures under a rigorous <strong>Leave-One-Subject-Out (LOSO)</strong> protocol to assess cross-subject generalization for vertical force (Fz) estimation. The table below presents the single-view (SV) results. (For multi-view late fusion and within-trial bounds, see the main paper).</p>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>Model</th>
-                    <th>r² ↑</th>
-                    <th>RMSE (BW) ↓</th>
-                    <th>Peak Error (BW) ↓</th>
-                    <th>Peak Timing (frames) ↓</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>PatchTST</td>
-                    <td class="best">0.403</td>
-                    <td class="best">0.510</td>
-                    <td>0.226</td>
-                    <td>1.07</td>
-                </tr>
-                <tr>
-                    <td>ST-GCN+Transformer</td>
-                    <td>0.394</td>
-                    <td>0.514</td>
-                    <td class="best">0.221</td>
-                    <td class="best">0.96</td>
-                </tr>
-                <tr>
-                    <td>TCN+BiGRU</td>
-                    <td>0.390</td>
-                    <td>0.514</td>
-                    <td>0.348</td>
-                    <td>3.79</td>
-                </tr>
-                <tr>
-                    <td>TCN+BiLSTM</td>
-                    <td>0.374</td>
-                    <td>0.521</td>
-                    <td>0.309</td>
-                    <td>2.58</td>
-                </tr>
-                <tr>
-                    <td>TSMixer</td>
-                    <td>0.351</td>
-                    <td>0.531</td>
-                    <td>0.218</td>
-                    <td>1.85</td>
-                </tr>
-                <tr>
-                    <td>Seq-Transformer</td>
-                    <td>0.345</td>
-                    <td>0.533</td>
-                    <td>0.281</td>
-                    <td>1.82</td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="columns is-centered mt-5">
+      <div class="column is-6">
+        <figure class="image">
+          <img src="demo_content/data_collection_setup.png" alt="Setup" style="border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        </figure>
+        <p class="has-text-centered is-size-7 mt-2"><strong>Figure 1.</strong> Instrumented court geometry with 8 cameras and 4 force plates.</p>
+      </div>
+      <div class="column is-6">
+        <figure class="image">
+          <img src="demo_content/pipeline_diagram.png" alt="Pipeline" style="border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        </figure>
+        <p class="has-text-centered is-size-7 mt-2"><strong>Figure 2.</strong> End-to-end processing and software-level alignment pipeline.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <h2 id="citation">📖 Citation</h2>
-        <p>If you find this dataset or benchmark useful in your research, please cite our paper:</p>
-        <div class="bibtex">
-@inproceedings{niu2026badmintongrf,
+<!-- Benchmark Results -->
+<section class="section bg-light" style="background-color: #f9f9f9;">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">Benchmark Results</h2>
+    <p>
+      We evaluated 10 baseline models using a rigorous <strong>Leave-One-Subject-Out (LOSO)</strong> protocol. The task is predicting body-weight (BW) normalized vertical force (F<sub>z</sub>). 
+      Below are the top Single-View (SV) results.
+    </p>
+    
+    <div class="table-container">
+      <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>r² &uarr;</th>
+            <th>RMSE (BW) &darr;</th>
+            <th>Peak Error (BW) &darr;</th>
+            <th>Peak Timing (fr) &darr;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>PatchTST</td>
+            <td class="best">0.403</td>
+            <td class="best">0.510</td>
+            <td>0.226</td>
+            <td>1.07</td>
+          </tr>
+          <tr>
+            <td>ST-GCN+Transformer</td>
+            <td>0.394</td>
+            <td>0.514</td>
+            <td class="best">0.221</td>
+            <td class="best">0.96</td>
+          </tr>
+          <tr>
+            <td>TCN+BiGRU</td>
+            <td>0.390</td>
+            <td>0.514</td>
+            <td>0.348</td>
+            <td>3.79</td>
+          </tr>
+          <tr>
+            <td>TCN+BiLSTM</td>
+            <td>0.374</td>
+            <td>0.521</td>
+            <td>0.309</td>
+            <td>2.58</td>
+          </tr>
+          <tr>
+            <td>TSMixer</td>
+            <td>0.351</td>
+            <td>0.531</td>
+            <td>0.218</td>
+            <td>1.85</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Citation -->
+<section class="section" id="citation">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">BibTeX</h2>
+    <pre><code>@inproceedings{niu2026badmintongrf,
   title={BadmintonGRF: A Multimodal Dataset and Benchmark for Markerless Ground Reaction Force Estimation in Badminton},
   author={Niu, Kuoye and Li, Jianwei and Cai, Shengze and Ma, Yong and Jia, Mengyao and Shen, Lishun and Zhang, Zhenheng and Peng, Yuxin and Song, Xian},
   booktitle={Proceedings of the 34th ACM International Conference on Multimedia},
   year={2026}
-}
-        </div>
+}</code></pre>
+  </div>
+</section>
 
-        <footer>
-            <p>BadmintonGRF Dataset © 2026. Released under CC BY-NC 4.0 (Data Tier 1) and MIT (Code).</p>
-        </footer>
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        <strong>BadmintonGRF Dataset</strong> © 2026.<br>
+        Code released under <a href="https://opensource.org/licenses/MIT">MIT License</a>. 
+        Data Tier 1 released under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+      </p>
+      <p class="is-size-7 mt-4">
+        Website template based on <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+      </p>
     </div>
+  </div>
+</footer>
+
 </body>
 </html>
