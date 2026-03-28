@@ -13,8 +13,7 @@
   [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/release/python-3100/)
 
   [**Project Page**](https://KenyaNiu.github.io/BadmintonGRF/) |
-  [**Dataset (Tier 1)**](https://doi.org/10.5281/zenodo.19277566) |
-  [**Paper**](#-citation) 
+  [**Dataset (Tier 1)**](https://doi.org/10.5281/zenodo.19277566)
 </div>
 
 <br>
@@ -114,22 +113,9 @@ BadmintonGRF/
 ## 📜 License & Access
 
 - **Code**: Released under the [MIT License](LICENSE).
+- **Code**: Released under the [MIT License](LICENSE).
 - **Data (Tier 1)**: Processed segments (Pose + Aligned GRF) are released under [CC BY-NC 4.0](LICENSE-DATA-CC-BY-NC-4.0.txt).
 - **Data (Tier 2)**: Raw RGB videos and C3D mocap data are available under controlled access for privacy protection. Please check the project page for application details.
-
-## 📖 Citation
-
-If you find our dataset or code useful in your research, please consider citing:
-
-```bibtex
-@misc{niu2026badmintongrf,
-  title={BadmintonGRF: A Multimodal Dataset and Benchmark for Markerless Ground Reaction Force Estimation in Badminton},
-  author={Niu, Kuoye and Li, Jianwei and Cai, Shengze and Ma, Yong and Jia, Mengyao and Shen, Lishun and Zhang, Zhenheng and Peng, Yuxin and Song, Xian},
-  howpublished={\url{https://github.com/KenyaNiu/BadmintonGRF}},
-  year={2026},
-  note={GitHub Repository and Dataset}
-}
-```
 
 ## 🤝 Acknowledgments
 

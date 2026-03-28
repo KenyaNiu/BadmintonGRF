@@ -36,6 +36,8 @@ tmp/
 
 # Local archives (not for GitHub)
 archive/
+paper/
+build/
 
 # Zenodo upload files (not for GitHub)
 zenodo_upload/
