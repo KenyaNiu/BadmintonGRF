@@ -224,13 +224,13 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3 section-title">Real-time GRF Prediction vs Ground Truth</h2>
     <p class="has-text-centered mb-5">
-      The video below demonstrates how the predicted vertical Ground Reaction Force (F<sub>z</sub>) closely follows the laboratory ground truth during high-impact jump landings in a dynamic rally.
+      The video below demonstrates how the predicted vertical Ground Reaction Force (F<sub>z</sub>) closely follows the laboratory ground truth during high-impact jump landings in a dynamic rally. Left: COCO-17 Pose Estimation; Right: Predicted vs Ground Truth GRF.
     </p>
     <div class="columns is-centered">
-      <div class="column is-10">
-        <div class="video-container">
-          <video poster="" id="grf-demo" autoplay controls muted loop playsinline width="100%">
-            <source src="demo_content/grf_sync_demo.mp4" type="video/mp4">
+      <div class="column is-12">
+        <div class="video-container" style="border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+          <video poster="" id="grf-demo-long" autoplay controls muted loop playsinline width="100%">
+            <source src="demo_content/grf_sync_demo_long.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
         </div>
@@ -274,13 +274,13 @@
     <div class="columns is-centered mt-5">
       <div class="column is-6">
         <figure class="image">
-          <img src="demo_content/data_collection_setup.png" alt="Setup" style="border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <img src="demo_content/Fig3_setup.png" alt="Setup" style="border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
         </figure>
         <p class="has-text-centered is-size-7 mt-2"><strong>Figure 1.</strong> Instrumented court geometry with 8 cameras and 4 force plates.</p>
       </div>
       <div class="column is-6">
         <figure class="image">
-          <img src="demo_content/pipeline_diagram.png" alt="Pipeline" style="border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <img src="demo_content/Fig2_pipeline.png" alt="Pipeline" style="border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
         </figure>
         <p class="has-text-centered is-size-7 mt-2"><strong>Figure 2.</strong> End-to-end processing and software-level alignment pipeline.</p>
       </div>
