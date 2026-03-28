@@ -122,11 +122,12 @@ BadmintonGRF/
 If you find our dataset or code useful in your research, please consider citing:
 
 ```bibtex
-@inproceedings{niu2026badmintongrf,
+@misc{niu2026badmintongrf,
   title={BadmintonGRF: A Multimodal Dataset and Benchmark for Markerless Ground Reaction Force Estimation in Badminton},
   author={Niu, Kuoye and Li, Jianwei and Cai, Shengze and Ma, Yong and Jia, Mengyao and Shen, Lishun and Zhang, Zhenheng and Peng, Yuxin and Song, Xian},
-  booktitle={Proceedings of the 34th ACM International Conference on Multimedia},
-  year={2026}
+  howpublished={\url{https://github.com/KenyaNiu/BadmintonGRF}},
+  year={2026},
+  note={GitHub Repository and Dataset}
 }
 ```
 
