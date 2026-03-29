@@ -29,11 +29,32 @@
 - ⏱️ **Software-Level Alignment**: Human-in-the-loop video-GRF alignment with automatic QA, avoiding the need for expensive hardware genlock.
 - 📊 **Comprehensive Benchmark**: 10 reproducible baseline models (e.g., PatchTST, ST-GCN, TSMixer) with a rigorous Leave-One-Subject-Out (LOSO) evaluation protocol and optional late fusion.
 - 🔒 **Tiered Privacy Release**: CC BY-NC 4.0 for processed pose+GRF (Tier 1), and controlled access for raw RGB/C3D (Tier 2).
+- 🎮 **Online Demo**: Try our Gradio-based web demo for real-time GRF estimation from badminton videos!
 
-## 📢 News
+## �️ Data Alignment Software
+
+We developed a specialized **Video-GRF Alignment Interface** to ensure precise synchronization between video frames and force plate data. This tool enables human-in-the-loop alignment with sub-frame accuracy, eliminating the need for expensive hardware genlock systems.
+
+<div align="center">
+  <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Badminton%20GRF%20data%20alignment%20software%20interface%20with%20video%20player%20and%20GRF%20force%20graphs%20showing%20synchronization%20between%20badminton%20footwork%20and%20ground%20reaction%20forces%20in%20a%20laboratory%20setting&image_size=landscape_16_9" width="80%" alt="BadmintonGRF Data Alignment Software">
+</div>
+
+### Key Features
+
+- **Real-time Video Playback**: Preview badminton footwork with synchronized pose overlay
+- **GRF Visualization**: Interactive graphs showing vertical, horizontal, and lateral ground reaction forces
+- **Precise Synchronization**: Manual event marking for video frames and GRF peaks
+- **Offset Calculation**: Automatic calculation of time offsets between video and force plate systems
+- **Quality Control**: Built-in validation tools to ensure alignment accuracy
+- **Batch Processing**: Support for processing multiple trials efficiently
+
+This alignment software is a critical component of our pipeline (`pipeline/step1_align_ui.py`), enabling high-quality data preparation for both the benchmark and downstream research applications.
+
+## �📢 News
 - **[2026-03]** 🏸 BadmintonGRF dataset and benchmark code are officially released!
+- **[2026-03]** 🎮 Gradio demo and inference engine are now available for real-time GRF estimation.
 
-## 📎 Supplementary material (ACM MM 2026)
+## 📎 Supplementary Material (ACM MM 2026)
 
 Reviewer-facing details—schema, QA audits, LOSO benchmark reproduction, and checklists—live in the repo as Markdown (rendered on GitHub):
 
@@ -107,21 +128,85 @@ python -m baseline train --method patch_tst \
     --run_dir runs/patch_tst_loso
 ```
 
+### 4. Using the Inference Engine
+
+We provide a standalone `InferenceEngine` class for running GRF estimation on new badminton videos:
+
+```python
+from inference_engine import InferenceEngine
+
+# Initialize the engine with pre-trained models
+engine = InferenceEngine(
+    yolo_model_path="yolo26l-pose.pt",
+    grf_model_path="runs/benchmark_bundle_20260325/patch_tst_xl/fold_sub_007/best_model.pth",
+    device="cuda"  # or "cpu"
+)
+
+# Process a video and get GRF predictions
+processed_video, stats = engine.process_video(
+    "path/to/your/badminton_video.mp4",
+    output_path="output.mp4"
+)
+
+# Access prediction statistics
+print(f"Fz mean: {stats['fz_mean_bw']:.2f} BW")
+print(f"Fz peak: {stats['fz_peak_bw']:.2f} BW")
+```
+
+### 5. Running the Gradio Demo
+
+We provide an interactive Gradio web interface for easy testing:
+
+```bash
+# Run the demo (requires GUI or accessible web browser)
+python app.py
+```
+
+The demo allows you to:
+- Upload badminton videos
+- Visualize pose estimation results
+- View real-time GRF estimation outputs
+- Download processed videos with overlaid predictions
+
 ## 📁 Repository Structure
 
-```text
-BadmintonGRF/
-├── baseline/              # 10 baseline models, LOSO training loops, and tasks
-├── pipeline/              # End-to-end data processing (extract GRF, align, pose, segment)
-├── tools/                 # Dataset scanning and validation scripts
-├── docs/                  # Project page, supplementary material (paper_supplementary.md), policies
-├── paper/                 # ACM MM 2026 paper LaTeX source
-└── run_all_baselines.sh   # Automated benchmarking script
 ```
+BadmintonGRF/
+├── app.py                      # Gradio web demo application
+├── inference_engine.py         # Standalone inference engine for GRF estimation
+├── baseline/                   # 10 baseline models, LOSO training loops, and tasks
+│   ├── models/                 # Model architectures (PatchTST, ST-GCN, TSMixer, etc.)
+│   ├── tasks/                  # Training and evaluation tasks
+│   └── training/               # Training utilities, metrics, and LOSO splits
+├── pipeline/                   # End-to-end data processing pipeline
+│   ├── step0_extract_grf.py    # Extract GRF from force plates
+│   ├── step1_align_ui.py       # Video-GRF alignment interface
+│   ├── step2_verify_sync.py    # Synchronization verification
+│   ├── step3_extract_pose.py   # Pose estimation with YOLO
+│   └── step4_segment.py        # Impact segment generation
+├── tools/                      # Dataset scanning and validation scripts
+├── docs/                      # Project page, supplementary material, policies
+├── paper/                     # ACM MM 2026 paper LaTeX source
+├── pretrained/               # Pre-trained model weights
+├── runs/                     # Training logs and checkpoints
+├── zenodo_upload/            # Data upload utilities
+├── run_all_baselines.sh      # Automated benchmarking script
+├── environment.yml           # Conda environment specification
+├── yolo26l-pose.pt          # YOLO26 pose estimation model
+└── yolo11l-pose.pt          # YOLO11 pose estimation model (backup)
+```
+
+## 🎮 Demo Preview
+
+The Gradio demo provides an intuitive interface for:
+
+1. **Video Upload**: Drag and drop badminton videos
+2. **Pose Visualization**: See YOLO pose estimation on the athlete
+3. **GRF Estimation**: View predicted ground reaction forces overlaid on video
+4. **Statistics**: Display key metrics like peak force and mean force in BW
 
 ## 📜 License & Access
 
-- **Code**: Released under the [MIT License](LICENSE).
 - **Code**: Released under the [MIT License](LICENSE).
 - **Data (Tier 1)**: Processed segments (Pose + Aligned GRF) are released under [CC BY-NC 4.0](LICENSE-DATA-CC-BY-NC-4.0.txt).
 - **Data (Tier 2)**: Raw RGB videos and C3D mocap data are available under controlled access for privacy protection. Please check the project page for application details.
@@ -129,3 +214,16 @@ BadmintonGRF/
 ## 🤝 Acknowledgments
 
 We extend our deepest gratitude to all the elite athletes from **Wuhan Sports University** who participated in this study, and the experimental staff for their professional support during the data collection process.
+
+---
+
+*If you find this work useful, please cite our paper:*
+
+```bibtex
+@article{badmintongrf2026,
+  title={BadmintonGRF: A Multimodal Dataset and Benchmark for Markerless Ground Reaction Force Estimation in Badminton},
+  author={Niu, Kuoye and Li, Jianwei and Cai, Shengze and Ma, Yong and Jia, Mengyao and Shen, Lishun and Zhang, Zhenheng and Peng, Yuxin and Song, Xian},
+  journal={ACM Multimedia 2026},
+  year={2026}
+}
+```
