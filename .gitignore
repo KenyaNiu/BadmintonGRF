@@ -52,6 +52,13 @@ docs/*
 !docs/keyframes/
 !docs/demo_content/
 
+# Supplementary material & policies referenced from the paper / supplementary MD
+!docs/paper_supplementary.md
+!docs/supp_artifact_inventory.md
+!docs/video_access_policy.md
+!docs/video_access_request_form.md
+!docs/project_overview_acmmm.md
+
 # LaTeX build artifacts
 paper/build/
 paper/*.aux
