@@ -13,7 +13,8 @@
   [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/release/python-3100/)
 
   [**Project Page**](https://KenyaNiu.github.io/BadmintonGRF/) |
-  [**Dataset (Tier 1)**](https://doi.org/10.5281/zenodo.19277566)
+  [**Dataset (Tier 1)**](https://doi.org/10.5281/zenodo.19277566) |
+  [**Supplementary Material**](https://github.com/KenyaNiu/BadmintonGRF/blob/main/docs/paper_supplementary.md)
 </div>
 
 <br>
@@ -31,6 +32,14 @@
 
 ## 📢 News
 - **[2026-03]** 🏸 BadmintonGRF dataset and benchmark code are officially released!
+
+## 📎 Supplementary material (ACM MM 2026)
+
+Reviewer-facing details—schema, QA audits, LOSO benchmark reproduction, and checklists—live in the repo as Markdown (rendered on GitHub):
+
+**[docs/paper_supplementary.md](https://github.com/KenyaNiu/BadmintonGRF/blob/main/docs/paper_supplementary.md)**
+
+Related: [artifact inventory](https://github.com/KenyaNiu/BadmintonGRF/blob/main/docs/supp_artifact_inventory.md), [Tier-2 access policy](https://github.com/KenyaNiu/BadmintonGRF/blob/main/docs/video_access_policy.md).
 
 ## 📊 Dataset Overview
 
@@ -105,7 +114,7 @@ BadmintonGRF/
 ├── baseline/              # 10 baseline models, LOSO training loops, and tasks
 ├── pipeline/              # End-to-end data processing (extract GRF, align, pose, segment)
 ├── tools/                 # Dataset scanning and validation scripts
-├── docs/                  # Project page assets and HTML
+├── docs/                  # Project page, supplementary material (paper_supplementary.md), policies
 ├── paper/                 # ACM MM 2026 paper LaTeX source
 └── run_all_baselines.sh   # Automated benchmarking script
 ```
