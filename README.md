@@ -31,12 +31,12 @@
 - 🔒 **Tiered Privacy Release**: CC BY-NC 4.0 for processed pose+GRF (Tier 1), and controlled access for raw RGB/C3D (Tier 2).
 - 🎮 **Online Demo**: Try our Gradio-based web demo for real-time GRF estimation from badminton videos!
 
-## �️ Data Alignment Software
+## 🛠️ Data Alignment Software
 
 We developed a specialized **Video-GRF Alignment Interface** to ensure precise synchronization between video frames and force plate data. This tool enables human-in-the-loop alignment with sub-frame accuracy, eliminating the need for expensive hardware genlock systems.
 
 <div align="center">
-  <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Badminton%20GRF%20data%20alignment%20software%20interface%20with%20video%20player%20and%20GRF%20force%20graphs%20showing%20synchronization%20between%20badminton%20footwork%20and%20ground%20reaction%20forces%20in%20a%20laboratory%20setting&image_size=landscape_16_9" width="80%" alt="BadmintonGRF Data Alignment Software">
+  <img src="docs/align_ui.png" width="80%" alt="BadmintonGRF Data Alignment Software">
 </div>
 
 ### Key Features
@@ -50,7 +50,7 @@ We developed a specialized **Video-GRF Alignment Interface** to ensure precise s
 
 This alignment software is a critical component of our pipeline (`pipeline/step1_align_ui.py`), enabling high-quality data preparation for both the benchmark and downstream research applications.
 
-## �📢 News
+## 📢 News
 - **[2026-03]** 🏸 BadmintonGRF dataset and benchmark code are officially released!
 - **[2026-03]** 🎮 Gradio demo and inference engine are now available for real-time GRF estimation.
 
@@ -58,9 +58,7 @@ This alignment software is a critical component of our pipeline (`pipeline/step1
 
 Reviewer-facing details—schema, QA audits, LOSO benchmark reproduction, and checklists—live in the repo as Markdown (rendered on GitHub):
 
-**[docs/paper_supplementary.md](https://github.com/KenyaNiu/BadmintonGRF/blob/main/docs/paper_supplementary.md)**
-
-Related: [artifact inventory](https://github.com/KenyaNiu/BadmintonGRF/blob/main/docs/supp_artifact_inventory.md), [Tier-2 access policy](https://github.com/KenyaNiu/BadmintonGRF/blob/main/docs/video_access_policy.md).
+**[paper_supplementary.md](https://github.com/KenyaNiu/BadmintonGRF/blob/main/paper_supplementary.md)**
 
 ## 📊 Dataset Overview
 
